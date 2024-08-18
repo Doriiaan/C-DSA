@@ -9,19 +9,21 @@ void *print_list(void *elem)
     return elem;
 }
 
-void main(void)
+int main(void)
 {
     List *list = NULL;
     int *new_int = NULL;
 
+    list = EmptyList();
+
     for(int i=0; i<10; i++)
     {
-        new_int = (int *) malloc(sizeof(int)); 
+        new_int = (int *) malloc(sizeof(int));
         if(new_int == NULL)
             continue;
 
         *new_int = i;
-        list = MakeList(list, new_int);
+        list = append(list, MakeList(EmptyList(), new_int));
     }
 
     printf("LIST :\n[ ");
@@ -40,4 +42,6 @@ void main(void)
     printf("REPLACE LIST :\n[ ");
     map(list, print_list);
     printf("]\n");
+
+    return 0;
 }
