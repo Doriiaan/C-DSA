@@ -3,7 +3,6 @@
 
 /**
  * @author ALARY Dorian
- * @date 18/08/2024
  * @brief Implementation of linked list.
  */
 
