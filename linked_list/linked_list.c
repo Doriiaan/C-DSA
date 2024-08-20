@@ -23,7 +23,7 @@ struct list
  *
  * @return Empty list
  */
-List *EmptyList()
+List *EmptyList(void)
 {
     return NULL;
 }

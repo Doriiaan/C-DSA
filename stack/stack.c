@@ -15,7 +15,7 @@ struct stack
  * 
  * @return The empty stack.
  */
-Stack *EmptyStack()
+Stack *EmptyStack(void)
 {
     return NULL;
 }

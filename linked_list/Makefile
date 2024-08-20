@@ -10,7 +10,7 @@ LDFLAGS=
 SRC= $(wildcard *.c) 
 OBJ= $(SRC:%.c=%.o)
 
-project : $(EXEC)
+all : $(EXEC)
 
 $(EXEC) : $(OBJ)
 	$(CC) -o $@ $^ $(LDFLAGS)

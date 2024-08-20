@@ -1,6 +1,6 @@
 CC = gcc
 
-EXEC= test_stack 
+EXEC= test_queue
 
 DEBUG= -g
 
@@ -18,8 +18,8 @@ $(EXEC) : $(OBJ)
 %.o : %.c
 	$(CC) -c $< -o $@ $(CFLAGS)
 
-stack.c : stack.h
-main : stack.h
+queue.c : queue.h
+main : queue.h
 
 clean:
 	-rm -f $(OBJ) $(EXEC)
