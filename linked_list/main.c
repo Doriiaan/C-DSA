@@ -2,10 +2,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 void *print_list(void *elem)
 {
     printf("%d ", *(int *)elem);
+    return elem;
+}
+
+void *multiply(void *elem)
+{
+    *(int *)elem *= * (int *)elem;
     return elem;
 }
 
@@ -26,22 +31,17 @@ int main(void)
         list = append(list, MakeList(EmptyList(), new_int));
     }
 
-    printf("LIST :\n[ ");
+    printf("map : print_list() : ");
     map(list, print_list);
-    printf("]\n");
+    printf("\n\n");
 
-    printf("REST LIST :\n[ ");
-    map(rest(list), print_list);
-    printf("]\n");
+    printf("map : multiply()");
+    map(list, multiply);
+    printf("\n\n");
 
-    printf("isEmpty() = %d\n", isEmpty(list));
-
-    int a = 8;
-    replaceFirst(list, &a);
-
-    printf("REPLACE LIST :\n[ ");
+    printf("map : print_list() : ");
     map(list, print_list);
-    printf("]\n");
+    printf("\n\n");
 
     return 0;
 }
