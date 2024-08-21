@@ -1,6 +1,6 @@
 /**
  * @author ALARY Dorian
- * @brief Implementation of linked list.
+ * @brief Implementation of Linked list
  */
 
 #include "linked_list.h"

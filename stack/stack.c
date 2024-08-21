@@ -1,4 +1,10 @@
+/**
+ * @author ALARY Dorian
+ * @brief Implementation of Stack 
+ */
+
 #include "stack.h"
+
 #include <stdlib.h>
 
 struct stack 
@@ -9,6 +15,7 @@ struct stack
     // data of any type
     void * elem;
 };
+
 
 /**
  * @brief The EmptyStack() function create an empty stack.

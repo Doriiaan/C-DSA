@@ -11,28 +11,63 @@
 typedef struct queue Queue;
 
 /**
- * @brief The EmptyStack() function create an empty stack.
+ * @brief The EmptyQueue() function create an empty queue.
  * 
- * @return The empty stack.
+ * @return The empty queue.
  */
 Queue *EmptyQueue(void);
 
 
 /**
- * @brief The push() function push the element at the top of the stack. 
+ * @brief The DeleteQueue() function delete a queue.
  * 
- * @param[in,out] stack: The stack.
+ * @param[in] queue: The queue
+ */
+void DeleteQueue(Queue **queue);
+
+
+/**
+ * @brief The push() function push the element at the end of the queue. 
+ * 
+ * @param[in, out] queue: The queue
  * @param[in] elem: The element
  * 
- * @return Return the modified stack. The stack pointer is the same as the 
- *         stack parameter.
+ * @return Return the modified queue. The queue pointer is the same as the 
+ *         queue parameter.
  */
-Queue *push(Queue *q, void *elem);
+Queue *push(Queue *queue, void *elem);
 
-void *pop(Queue *q);
 
-void *top(Queue *q);
+/**
+ * @brief The pop() function delete the element at the begining of the 
+ *        queue.
+ * 
+ * @param[in,out] queue: The queue
+ * 
+ * @return The modified queue. 
+ */
+Queue *pop(Queue *queue);
 
-Queue isEmpty(Queue *q);
+
+/**
+ * @brief The top() function return the element at the begining of the
+ *        queue.
+ * 
+ * @param[in] queue: The queue
+ * 
+ * @return The element at the begining of the queue.
+ */
+void *top(Queue *queue);
+
+
+/**
+ * @brief The isEmpty() function return true if the queue is empty, false
+ *        instead.
+ * 
+ * @param[in] queue: The queue
+ * 
+ * @return true if the queue is empty, false instead.
+ */
+bool isEmpty(Queue *queue);
 
 #endif // __QUEUE_H__
