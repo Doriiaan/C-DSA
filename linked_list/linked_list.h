@@ -10,110 +10,71 @@
 
 typedef struct list List;
 
-
 /**
- * @brief The EmptyList() function is one of the constructor of the linked
- *        list.
- *
- * @return Empty list
+ * @brief The createList() function create an empty list.
+ * 
+ * @return A pointer to the empty list.
  */
-List *EmptyList();
+List *createList();
 
 
 /**
- * @brief The MakeList() function is one of the constructor of the linked
- *        list. It adds the element at the start of the list.
- *
- * @param[in] l: The linked list
- * @param[in] elem: Element added at the start of the list
- *
- * @return Pointer to new list if all is good, or input list if there's an error
+ * @brief The deleteList() function delete a list from memory.
+ * 
+ * @param[in] list: A pointer to pointer to the list.
  */
-List *MakeList(List *l, void *elem);
+void deleteList(List **list);
 
 
 /**
- * @brief The append() function append the list l2 at the end of the list l1.
+ * @brief The pushList() function push an element at the begining of the list.
+ * 
+ * @param[in] list: A pointer to the list.
+ * @param[in] elem: The element to push in the list.
  *
- * @param[in] l1: The source list
- * @param[in] l2: The added list
- *
- * @return The concatenated list
+ * @return A pointer to the list. 
  */
-List *append(List *l1, List *l2);
+List *pushList(List *list, void *elem);
 
 
 /**
- * @brief The first() function return the first elem of the list.
- *
- * @param[in] l: The linked list
- *
- * @return The first element or NULL if the list is empty
+ * @brief The popList() function remove an element from the list.
+ * 
+ * @param[in] list: A pointer to the list.
+ * 
+ * @return A pointer to the list. 
  */
-void *first(List *l);
+List *popList(List *list);
 
 
 /**
- * @brief The last() function return the last elem of the list.
- *
- * @param[in] l: The linked list
- *
- * @return The last element or NULL if the list is empty
+ * @brief The atList() function return the element at the position i.
+ * 
+ * @param[in] list: A pointer to the list.
+ * @param[in] i: The index of the returned element.
+ * 
+ * @return The element at the position i.
  */
-void *last(List*l);
+void *atList(List *list, unsigned int i);
 
 
 /**
- * @brief The rest() function return the rest of the list.
- *
- * @param[in] l: The linked list
- *
- * @return the rest of the list or NULL if the list is empty.
- */
-List * rest(List *l);
-
-
-/**
- * @brief The isEmpty() function return true if the list is empty.
- *
- * @param[in] l: The linked list
- *
+ * @brief The isEmptyList() return true if the list is empty, false instead.
+ * 
+ * @param[in] list: A pointer to the list.
+ * 
  * @return true if the list is empty, false instead.
  */
-bool isEmpty(List *l);
-
-
-
-/**
- * @brief The replaceFirst() function replace the first element.
- *
- * @param[in] l: The linked list
- * @param[in] elem: The new value of the first element
- *
- * @return 0 on success, -1 on failure
- */
-int replaceFirst(List *l, void *elem);
+bool isEmptyList(List *list);
 
 
 /**
- * @brief The replaceRest() function replace the rest of the list.
- *
- * @param[in] l: The linked list
- * @param[in] rest: The rest
- *
- * @return 0 on success, -1 on failure
+ * @brief The lengthList() return the length of the list.
+ * 
+ * @param[in] list: A pointer to the list.
+ * 
+ * @return The length of the list.
  */
-int replaceRest(List *l, List *rest);
-
-
-/**
- * @brief The map() function call the function f on every elem of the list.
- *
- * @param[in] l: The linked list
- * @param[in] f: The map function
- */
-void map(List *l, void *(*f)(void *));
-
-
+unsigned int lengthList(List *list);
 
 #endif // __LINKED_LIST_H__
