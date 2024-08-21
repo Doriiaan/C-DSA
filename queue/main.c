@@ -5,25 +5,29 @@
 
 int main(void)
 {
-    Queue *q = EmptyQueue();
+    Queue *q = createQueue();
 
     for (int i = 0; i < 100; i++)
     {
         int *new_int = malloc(sizeof(int));
         *new_int = i;
-        q = push(q, new_int);
+        q = pushQueue(q, new_int);
     }
 
+    printf("There is %d elements in the queue.\n", lengthQueue(q));
+
+    printf("Elements : ");
     for (int i = 0; i < 100; i++)
     {
-        if(!isEmpty(q))
+        if(!isEmptyQueue(q))
         {
-            printf("%d ", *(int*)top(q));
-            q = pop(q);
+            printf("%d ", *(int*)topQueue(q));
+            q = popQueue(q);
         }
     }
+    printf("\n");
 
-    DeleteQueue(&q); 
+    deleteQueue(&q); 
     
     return 0;
 }

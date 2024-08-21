@@ -19,50 +19,38 @@ typedef struct cell
 struct queue 
 {
     // First cell of the queue.
-    Cell *first;
+    Cell *head;
 
     // Last cell of the queue;
-    Cell *last;
+    Cell *tail;
+
+    // Length of Queue
+    unsigned int length;
 };
 
 
-/**
- * @brief The EmptyQueue() function create an empty queue.
- * 
- * @return The empty queue.
- */
-Queue *EmptyQueue(void)
+Queue *createQueue(void)
 {
-    Queue *q = malloc(sizeof(Queue));
-    if(q == NULL)
+    Queue *queue = malloc(sizeof(Queue));
+    if(queue == NULL)
         return NULL;
     
-    q->first = NULL;
-    q->last = NULL;
+    queue->head = NULL;
+    queue->tail = NULL;
+    queue->length = 0;
 
-    return q;
+    return queue;
 }
 
 
-/**
- * @brief The DeleteQueue() function delete a queue.
- * 
- * @param[in] queue: The queue
- */
-void DeleteQueue(Queue **queue)
+void deleteQueue(Queue **queue)
 {
     if(*queue == NULL)
         return;
 
-    Cell *current = (*queue)->first;
-    Cell *tmp = NULL;
-
-    while(current)
+    while(!isEmptyQueue(*queue))
     {
-        tmp = current;
-        current = current->next;
-        free(tmp);
-        tmp = NULL;
+        popQueue(*queue);
     }
 
     free(*queue);
@@ -70,16 +58,7 @@ void DeleteQueue(Queue **queue)
 }
 
 
-/**
- * @brief The push() function push the element at the end of the queue. 
- * 
- * @param[in, out] queue: The queue
- * @param[in] elem: The element
- * 
- * @return Return the modified queue. The queue pointer is the same as the 
- *         queue parameter.
- */
-Queue *push(Queue *queue, void *elem)
+Queue *pushQueue(Queue *queue, void *elem)
 {
     if(queue == NULL)
         return NULL;
@@ -89,61 +68,48 @@ Queue *push(Queue *queue, void *elem)
         return queue;
     
     new->elem = elem;
-    if(!isEmpty(queue))
-        queue->last->next = new;
+
+    if(!isEmptyQueue(queue))
+        queue->tail->next = new;
     else
-        queue->first = new;
-    queue->last = new;
+        queue->head = new;
+
+    queue->tail = new;
+    queue->length++;
     return queue;
 }
 
 
-/**
- * @brief The pop() function delete the element at the begining of the 
- *        queue.
- * 
- * @param[in,out] queue: The queue
- * 
- * @return The modified queue. 
- */
-Queue *pop(Queue *queue)
+Queue *popQueue(Queue *queue)
 {
-    if(queue == NULL || isEmpty(queue))
+    if(queue == NULL || isEmptyQueue(queue))
         return queue;
     
-    Cell *first = queue->first;
-    queue->first = queue->first->next;
-    free(first);
+    Cell *head = queue->head;
+    queue->head = queue->head->next;
+    free(head);
+    queue->length--;
+
     return queue;
 }
 
 
-/**
- * @brief The top() function return the element at the begining of the
- *        queue.
- * 
- * @param[in] queue: The queue
- * 
- * @return The element at the begining of the queue.
- */
-void *top(Queue *queue)
+void *topQueue(Queue *queue)
 {
-    if(queue == NULL || isEmpty(queue))
+    if(queue == NULL || isEmptyQueue(queue))
         return NULL; 
 
-    return queue->first->elem;
+    return queue->head->elem;
 }
 
-/**
- * @brief The isEmpty() function return true if the queue is empty, false
- *        instead.
- * 
- * @param[in] queue: The queue
- * 
- * @return true if the queue is empty, false instead.
- */
-bool isEmpty(Queue *queue)
+
+bool isEmptyQueue(Queue *queue)
 {
-    return (queue == NULL || queue->first == NULL);
+    return (queue == NULL || queue->head == NULL);
 }
 
+
+unsigned int lengthQueue(Queue *queue)
+{
+    return queue->length;
+}

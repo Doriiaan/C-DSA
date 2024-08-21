@@ -11,63 +11,72 @@
 typedef struct queue Queue;
 
 /**
- * @brief The EmptyQueue() function create an empty queue.
+ * @brief The createQueue() function create an empty queue.
  * 
  * @return The empty queue.
  */
-Queue *EmptyQueue(void);
+Queue *createQueue(void);
 
 
 /**
- * @brief The DeleteQueue() function delete a queue.
+ * @brief The deleteQueue() function delete a queue.
  * 
- * @param[in] queue: The queue
+ * @param[in] queue: The deleted queue.
  */
-void DeleteQueue(Queue **queue);
+void deleteQueue(Queue **queue);
 
 
 /**
- * @brief The push() function push the element at the end of the queue. 
+ * @brief The pushQueue() function push the element at the end of the queue. 
  * 
- * @param[in, out] queue: The queue
- * @param[in] elem: The element
+ * @param[in, out] queue: The queue.
+ * @param[in] elem: The element.
  * 
- * @return Return the modified queue. The queue pointer is the same as the 
- *         queue parameter.
+ * @return Return the modified queue.
  */
-Queue *push(Queue *queue, void *elem);
+Queue *pushQueue(Queue *queue, void *elem);
 
 
 /**
- * @brief The pop() function delete the element at the begining of the 
+ * @brief The popQueue() function delete the element at the begining of the 
  *        queue.
  * 
- * @param[in,out] queue: The queue
+ * @param[in,out] queue: The queue.
  * 
  * @return The modified queue. 
  */
-Queue *pop(Queue *queue);
+Queue *popQueue(Queue *queue);
 
 
 /**
- * @brief The top() function return the element at the begining of the
+ * @brief The topQueue() function return the element at the begining of the
  *        queue.
  * 
- * @param[in] queue: The queue
+ * @param[in] queue: The queue.
  * 
  * @return The element at the begining of the queue.
  */
-void *top(Queue *queue);
+void *topQueue(Queue *queue);
 
 
 /**
- * @brief The isEmpty() function return true if the queue is empty, false
+ * @brief The isEmptyQueue() function return true if the queue is empty, false
  *        instead.
  * 
- * @param[in] queue: The queue
+ * @param[in] queue: The queue.
  * 
  * @return true if the queue is empty, false instead.
  */
-bool isEmpty(Queue *queue);
+bool isEmptyQueue(Queue *queue);
+
+
+/**
+ * @brief The lengthQueue() function the length of the queue.
+ * 
+ * @param[in] queue: The queue.
+ * 
+ * @return The length of the queue.
+ */
+unsigned int lengthQueue(Queue *queue);
 
 #endif // __QUEUE_H__
