@@ -7,91 +7,103 @@
 
 #include <stdlib.h>
 
+typedef struct cell
+{
+    // Elem of the cell
+    void *elem;
+
+    // Next cell of the stack
+    struct cell *below;
+
+} Cell;
+
 struct stack 
 {
-    // next elem
-    struct stack * next;
+    // First cell of the stack
+    Cell *top;
 
-    // data of any type
-    void * elem;
+    // Length of the stack
+    unsigned int length;
 };
 
 
-/**
- * @brief The EmptyStack() function create an empty stack.
- * 
- * @return The empty stack.
- */
-Stack *EmptyStack(void)
+Stack *createStack(void)
 {
-    return NULL;
+    Stack *stack = malloc(sizeof(Stack));
+    if(stack == NULL)
+        return NULL;
+
+    stack->length = 0;
+    stack->top = NULL;
+
+    return stack;
 }
 
 
-/**
- * @brief The push() function push the element at the top of the stack. 
- * 
- * @param[in,out] stack: The stack.
- * @param[in] elem: The element
- * 
- * @return Return the modified stack. The stack pointer is the same as the 
- *         stack parameter.
- */
-Stack *push(Stack *stack, void *elem)
+void deleteStack(Stack **stack)
 {
-   Stack *new = (Stack *) malloc(sizeof(Stack));
+    if(stack == NULL)
+        return;
+    
+    while(!isEmptyStack(*stack))
+        popStack(*stack);
+    
+    free(*stack);
+    *stack = NULL;
+}
+
+
+Stack *pushStack(Stack *stack, void *elem)
+{
+    if(stack == NULL)
+        return NULL;
+
+   Cell *new = malloc(sizeof(Cell));
    if (new == NULL)
         return stack;
 
     new->elem = elem;
-    new->next = stack;
-    return new;
+    new->below = stack->top;
+    stack->top = new;
+    stack->length++;
+
+    return stack;
 }
 
 
-/**
- * @brief The top() function return the element at the top of the stack. 
- * 
- * @param[in] stack: The stack.
- * 
- * @return The element at the top of the stack.
- */
-void *top(Stack *stack)
+void *topStack(Stack *stack)
 {
-    if(isEmpty(stack))
+    if(stack == NULL || isEmptyStack(stack))
         return NULL;
 
-    return stack->elem;
+    return stack->top->elem;
 }
 
 
-/**
- * @brief The pop() function delete the element at the top of the stack.
- *  
- * @param[in] stack: The stack.
- * 
- * @return The stack with the top element removed.
- */
-Stack *pop(Stack **stack)
+Stack *popStack(Stack *stack)
 {
-    if(isEmpty(*stack))
-        return *stack;
+    if(stack == NULL ||isEmptyStack(stack))
+        return stack;
 
-    Stack *tmp = *stack;
-    *stack = (*stack)->next;
+    Cell *tmp = stack->top;
+    stack->top = tmp->below;
+    stack->length--;
     free(tmp);
-    return *stack;
+
+    return stack;
 }
 
-/**
- * @brief The isEmpty() function return true if the stack is empty, 
- *        false instead.
- * 
- * @param[in] stack: The stack.
- * 
- * @return Return true if the stack is empty, false instead.
- */
-bool isEmpty(Stack *stack)
+
+bool isEmptyStack(Stack *stack)
 {
-    return stack == NULL;
+    return (stack == NULL || lengthStack(stack) == 0);
+}
+
+
+unsigned int lengthStack(Stack *stack)
+{
+    if(stack == NULL)
+        return 0;
+    else
+        return stack->length;
 }
