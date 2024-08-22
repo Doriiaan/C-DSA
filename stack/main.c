@@ -11,7 +11,7 @@ int main(void)
         int *value = malloc(sizeof(int));
         if(value == NULL)
             continue;
-        
+
         *value = i;
         s = pushStack(s, value);
     }

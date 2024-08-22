@@ -27,7 +27,7 @@ int main(void)
     }
     printf("\n");
 
-    deleteQueue(&q); 
-    
+    deleteQueue(&q);
+
     return 0;
 }

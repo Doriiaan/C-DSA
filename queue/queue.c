@@ -16,7 +16,7 @@ typedef struct cell
     void *elem;
 } Cell;
 
-struct queue 
+struct queue
 {
     // First cell of the queue.
     Cell *head;
@@ -34,7 +34,7 @@ Queue *createQueue(void)
     Queue *queue = malloc(sizeof(Queue));
     if(queue == NULL)
         return NULL;
-    
+
     queue->head = NULL;
     queue->tail = NULL;
     queue->length = 0;
@@ -66,7 +66,7 @@ Queue *pushQueue(Queue *queue, void *elem)
     Cell *new = malloc(sizeof(Cell));
     if(new == NULL)
         return queue;
-    
+
     new->elem = elem;
 
     if(!isEmptyQueue(queue))
@@ -84,7 +84,7 @@ Queue *popQueue(Queue *queue)
 {
     if(queue == NULL || isEmptyQueue(queue))
         return queue;
-    
+
     Cell *head = queue->head;
     queue->head = queue->head->next;
     free(head);
@@ -97,7 +97,7 @@ Queue *popQueue(Queue *queue)
 void *topQueue(Queue *queue)
 {
     if(queue == NULL || isEmptyQueue(queue))
-        return NULL; 
+        return NULL;
 
     return queue->head->elem;
 }

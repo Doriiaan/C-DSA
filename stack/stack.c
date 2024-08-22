@@ -1,6 +1,6 @@
 /**
  * @author ALARY Dorian
- * @brief Implementation of Stack 
+ * @brief Implementation of Stack
  */
 
 #include "stack.h"
@@ -17,7 +17,7 @@ typedef struct cell
 
 } Cell;
 
-struct stack 
+struct stack
 {
     // First cell of the stack
     Cell *top;
@@ -44,10 +44,10 @@ void deleteStack(Stack **stack)
 {
     if(stack == NULL)
         return;
-    
+
     while(!isEmptyStack(*stack))
         popStack(*stack);
-    
+
     free(*stack);
     *stack = NULL;
 }

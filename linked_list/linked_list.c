@@ -18,7 +18,7 @@ typedef struct cell
 
 struct list
 {
-    // First cell 
+    // First cell
     Cell * head;
 
     // Number of cell;
@@ -31,7 +31,7 @@ List *createList()
     List *list = malloc(sizeof(List));
     if(list == NULL)
         return NULL;
-    
+
     list->head = NULL;
     list->length = 0;
     return list;
@@ -45,7 +45,7 @@ void deleteList(List **list)
 
     while(!isEmptyList(*list))
         popList(*list);
-    
+
     free(*list);
     *list = NULL;
 }
@@ -54,7 +54,7 @@ List *pushList(List *list, void *elem)
 {
     if(list == NULL)
         return NULL;
-    
+
     Cell *new = malloc(sizeof(Cell));
     new->elem = elem;
     new->next = list->head;
