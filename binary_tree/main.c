@@ -5,10 +5,12 @@
  * @brief This file is a use example of binary tree library
  */
 
+// Before the binary_tree includes
+#define T int
+
 #include "binary_tree.h"
 #include <stdio.h>
 
-#define T int
 
 int main()
 {
